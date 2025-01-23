@@ -15,12 +15,12 @@ function adicionarAmigo(){
 
 function atualizarLista() {
     let listaAmigos = document.querySelector("#listaAmigos");
+
     listaAmigos.innerHTML = "";
+
     for (let i = 0; i < amigos.length; i++) {
         const amigo = amigos[i];
-        
         const item = document.createElement("li");
-        
         item.textContent = `${i + 1} - ${amigo}`;
 
         listaAmigos.appendChild(item);
@@ -28,11 +28,15 @@ function atualizarLista() {
     
 }
 
-function sortearAmigo(){
-    let resultado = document.querySelector("#resultado").value;
+function sortearAmigo() {
+    let resultado = document.querySelector("#resultado");
 
-    let escolhido = Math.floor(Math.random() * amigos.length);
+    if(amigos.length < 2){
+        alert("Adicione mais amigos para o sorteio");
+    } else {
+        let escolhido = Math.floor(Math.random() * amigos.length);
         resultado.innerHTML = `O Seu amigo(a) é o(a) ${(amigos[escolhido]).toUpperCase()}!`;
         amigos.splice(escolhido, 1);
         atualizarLista();
+    }
 }
